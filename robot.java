@@ -1,0 +1,92 @@
+
+package org.firstinspires.ftc.teamcode;
+
+
+import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
+
+import org.firstinspires.ftc.robotcore.external.hardware.camera.Camera;
+import org.tensorflow.lite.task.vision.detector.Detection;
+
+public class Robot {
+
+    /* Public OpMode members. */
+    public DcMotor frontRight;
+    public DcMotor backRight;
+    public DcMotor frontLeft;
+    public DcMotor backLeft;
+    public DcMotor lift;
+    public CRServo DroneLaunch;
+    public Servo claw1;
+    public DcMotor Rigging;
+    public DcMotor Rigging2;
+     //public Servo claw2;
+    // public DcMotor lift3;
+    // public DcMotor lift4;
+
+
+    //continuous rotation continuous rotation CR (Like a motor 360 degree rot.
+    //Reg. servo (x degrees rot. limited so 180 degree but u can set specific angle to have servo rot.)
+
+    /* local OpMode members. */
+    HardwareMap hwMap = null;
+    public ElapsedTime runtime = new ElapsedTime();
+
+    /* Constructor */
+    public Robot() {
+
+    }
+
+    /* Initialize standard Hardware interfaces */
+    public void init(HardwareMap ahwMap) {
+        // Save reference to Hardware map
+        hwMap = ahwMap;
+
+        // Define and Initialize Devices
+        frontRight = hwMap.get(DcMotor.class, "frontRight");
+        backLeft = hwMap.get(DcMotor.class, "backLeft");
+        frontLeft = hwMap.get(DcMotor.class, "frontLeft");
+        backRight = hwMap.get(DcMotor.class, "backRight");
+        lift = hwMap.get(DcMotor.class, "lift");
+        DroneLaunch = hwMap.get(CRServo.class, "DroneLaunch");
+        claw1 = hwMap.get(Servo.class, "claw1");
+        Rigging = hwMap.get(DcMotor.class,"Rigging");
+        Rigging2 = hwMap.get(DcMotor.class,"Rigging2");
+                //claw2 = hwMap.get(Servo.class, "claw2"); (1 Servo Being used now)
+       // lift3 = hwMap.get(DcMotor.class, "lift3");
+        // lift4 = hwMap.get(DcMotor.class, "lift4");
+
+        // Setting motor directions to turn
+        frontLeft.setDirection(DcMotor.Direction.REVERSE);
+        backLeft.setDirection(DcMotor.Direction.REVERSE);
+        frontRight.setDirection(DcMotor.Direction.FORWARD);
+        backRight.setDirection(DcMotor.Direction.FORWARD);
+        lift.setDirection(DcMotorSimple.Direction.FORWARD);
+        lift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        //claw1.setDirection(Servo.Direction.FORWARD);
+        claw1.setDirection(Servo.Direction.REVERSE);
+        Rigging.setDirection(DcMotor.Direction.REVERSE);
+        Rigging2.setDirection(DcMotorSimple.Direction.FORWARD);
+       DroneLaunch.setDirection(CRServo.Direction.REVERSE);
+
+        // lift3.setDirection(DcMotor.Direction.FORWARD);
+        // lift4.setDirection(DcMotor.Direction.REVERSE);
+
+        // forward = clockwise tetrix 0.0-1.0 counter is -1.0 to -0.0
+        //no need to def direction bc its reg servo
+
+    }
+
+    public void sleep(long milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+}
