@@ -47,6 +47,12 @@ public class Teleop extends LinearOpMode {
             double BackLeftVal = gamepad1.left_stick_y + (gamepad1.left_stick_x) - gamepad1.right_stick_x;
             double BackRightVal = gamepad1.left_stick_y - (gamepad1.left_stick_x) + gamepad1.right_stick_x;
 
+            //Powerplay controller configs for reference to centerstage indirect drive
+       //     double FrontLeftVal = gamepad1.left_stick_y - gamepad1.left_stick_x + -gamepad1.right_stick_x;
+       //     double FrontRightVal = gamepad1.left_stick_y + (gamepad1.left_stick_x) - -gamepad1.right_stick_x;
+       //     double BackLeftVal = gamepad1.left_stick_y + (gamepad1.left_stick_x) + -gamepad1.right_stick_x;
+       //     double BackRightVal = gamepad1.left_stick_y - (gamepad1.left_stick_x) - -gamepad1.right_stick_x;
+
 
             // change orientation bc going forward is backwards
             //Move range to between 0 and +1, if not already
